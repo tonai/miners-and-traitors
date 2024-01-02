@@ -1,0 +1,101 @@
+.htp {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #e5cca6;
+  translate: 100% 0;
+  transition: translate 500ms;
+  z-index: 1000;
+}
+
+.htp.open {
+  translate: 0 0;
+}
+
+.htp__corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -100% 0;
+  border-width: min(16vw, 8vh) 0 0 min(32vw, 16vh);
+  border-style: solid;
+  border-color: #5d3c2d transparent;
+  color: #ffffff;
+  transition: border-width 500ms, border-color 500ms, translate 500ms, color 500ms;
+}
+
+.htp.open .htp__corner {
+  translate: 0 0;
+  border-width: min(16vw, 8vh) min(32vw, 16vh) 0 0;
+  border-color: #ffffff transparent;
+  color: #000000;
+}
+
+.htp__btn {
+  position: absolute;
+  top: max(-4vw, -2vh);
+  right: 0;
+  padding: min(2vw, 1vh) min(4vw, 2vh);
+  margin: 0;
+  border: 0;
+  background: transparent;
+  translate: 0 -100%;
+  font-weight: bold;
+  transition: translate 500ms;
+  font-size: min(8vw, 4vh);
+  color: inherit;
+}
+
+.htp.open .htp__btn {
+  translate: 100% -100%;
+}
+
+.htp__overflow {
+  overflow: auto;
+  height: 100vh;
+}
+
+.htp__content {
+  padding: min(5vw, 2.5vh);
+  line-height: 4vh;
+}
+
+.htp__title {
+  text-align: center;
+  margin-top: 0;
+}
+
+.htp__imgWrapper {
+  position: relative;
+}
+
+.htp__img {
+  vertical-align: middle;
+  margin: 0;
+}
+
+.htp__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.htp__form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.83em;
+}
+
+.htp__label {
+  margin-right: 10px;
+}

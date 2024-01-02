@@ -1,0 +1,71 @@
+import { ICard, ITileKey } from "../types/game";
+
+export const cards: Record<string, ICard> = {
+  tileBlock: { north: false, south: false, est: false, west: false, closed: true },
+  tileNSEW: { north: true, south: true, est: true, west: true },
+  tileSEW: { north: false, south: true, est: true, west: true },
+  tileNSW: { north: true, south: true, est: false, west: true },
+  tileNSE: { north: true, south: true, est: true, west: false },
+  tileNEW: { north: true, south: false, est: true, west: true },
+  tileNS: { north: true, south: true, est: false, west: false },
+  tileEW: { north: false, south: false, est: true, west: true },
+  tileSE: { north: false, south: true, est: true, west: false },
+  tileSW: { north: false, south: true, est: false, west: true },
+  tileNE: { north: true, south: false, est: true, west: false },
+  tileNW: { north: true, south: false, est: false, west: true },
+  tileW: { north: false, south: false, est: false, west: true },
+  tileN: { north: true, south: false, est: false, west: false },
+  tileE: { north: false, south: false, est: true, west: false },
+  tileS: { north: false, south: true, est: false, west: false },
+  tileWN: { north: true, south: false, est: false, west: true, closed: true },
+  tileWE: { north: false, south: false, est: true, west: true, closed: true },
+  tileWS: { north: false, south: true, est: false, west: true, closed: true },
+  tileEN: { north: true, south: false, est: true, west: false, closed: true },
+  tileSN: { north: true, south: true, est: false, west: false, closed: true },
+  tileES: { north: false, south: true, est: true, west: false, closed: true },
+  tileStart: { north: true, south: true, est: true, west: true },
+  tileGoal: { north: true, south: true, est: true, west: true },
+  tileLure: { north: true, south: true, est: true, west: true },
+  map: { action: true },
+  blockBomb: { action: true },
+  pickaxe: { action: true },
+  brokenPickaxe: { action: true },
+  tileWEN: { north: true, south: false, est: true, west: true, closed: true },
+  tileESN: { north: true, south: true, est: true, west: false, closed: true },
+  tileWSN: { north: true, south: true, est: false, west: true, closed: true },
+  tileWES: { north: false, south: true, est: true, west: true, closed: true },
+};
+
+export const tilesPile: ITileKey[] = [
+  'tileSEW', 'tileSEW', 'tileSEW',
+  'tileNSW', 'tileNSW', 'tileNSW',
+  'tileNSE', 'tileNSE', 'tileNSE',
+  'tileNEW', 'tileNEW', 'tileNEW',
+  'tileNS', 'tileNS', 'tileNS',
+  'tileEW', 'tileEW', 'tileEW',
+  'tileNSEW', 'tileNSEW', 'tileNSEW',
+  'tileSE', 'tileSE', 'tileSE',
+  'tileSW', 'tileSW', 'tileSW',
+  'tileNE', 'tileNE', 'tileNE',
+  'tileNW', 'tileNW', 'tileNW',
+  'tileW',
+  'tileN',
+  'tileE',
+  'tileS',
+  'tileWN',
+  'tileWE',
+  'tileWS',
+  'tileEN',
+  'tileSN',
+  'tileES',
+  'tileWEN',
+  'tileESN',
+  'tileWSN',
+  'tileWES',
+];
+
+export const spyTiles: ITileKey[] = ['map', 'map', 'map', 'map', 'map', 'map'];
+
+export const wallTiles: ITileKey[] = ['blockBomb', 'blockBomb', 'tileBlock', 'tileBlock', 'tileBlock', 'tileBlock'];
+
+export const pickaxeTiles: ITileKey[] = ['pickaxe', 'pickaxe', 'pickaxe', 'brokenPickaxe', 'brokenPickaxe', 'brokenPickaxe'];

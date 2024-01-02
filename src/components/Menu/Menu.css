@@ -1,0 +1,64 @@
+.menu__title {
+  position: absolute;
+  top: min(5vw, 2.5vh);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: min(15vw, 7.5vh);
+}
+
+.menu__subtitle {
+  margin: 10vh 0 0;
+  font-size: min(10vw, 5vh);
+}
+
+.menu__players {
+  list-style: none;
+  margin: 0;
+  padding: min(2vw, 1vh);
+  font-size: min(5vw, 2.5vh);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: min(5vw, 2.5vh);
+  font-weight: bold;
+}
+
+.menu__player {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: min(1vw, 0.5vh) 0;
+  scale: 0.8;
+}
+
+.menu__player.you {
+  animation: 1s infinite alternate bounce;
+}
+
+@keyframes bounce {
+  from { scale: 0.8; }
+  to   { scale: 1; }
+}
+
+.menu__img {
+  margin-right: 10px;
+  width: min(16vw, 8vh);
+  height: min(16vw, 8vh);
+  border-radius: 50%;
+}
+
+.menu_play {
+  border: 2px solid #c18a3a;
+  margin: 0;
+  padding: min(2vw, 1vh);
+  background-color: #e5cca6;
+  position: absolute !important;
+  bottom: 7vh;
+  left: 7vh;
+  right: 7vh;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu_play:hover {
+  border-color: #c18a3a;
+}

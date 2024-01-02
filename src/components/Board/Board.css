@@ -1,0 +1,39 @@
+.board {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  overflow: auto;
+  scrollbar-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.board::-webkit-scrollbar {
+  width: 0;
+}
+
+.board__margin {
+  padding: 50px;
+  height: 100%;
+  flex: 1;
+}
+
+.board__margin.width {
+  width: 100%;
+}
+
+.board__table {
+  border-collapse: collapse;
+}
+
+.board__row {
+  border: 0;
+}
+
+.board__cell {
+  border: 0;
+  padding: 0;
+  position: relative;
+  background: white;
+}

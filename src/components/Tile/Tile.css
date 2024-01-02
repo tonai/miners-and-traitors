@@ -1,0 +1,58 @@
+.tile {
+  display: block;
+}
+
+.tile.new {
+  position: relative;
+  animation: 1s zoomOut;
+}
+
+.tile:has(+ .tile__highlighted:hover) {
+  opacity: 0.75;
+}
+
+.tile__highlighted {
+  display: flex;
+  position: absolute !important;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  font-family: sans-serif;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+@keyframes zoomOut {
+  from {
+    scale: 2;
+    box-shadow: 0 0 20px white;
+    z-index: 999;
+  }
+  to {
+    scale: 1;
+    box-shadow: 0 0 0 white;
+    z-index: 0;
+  }
+}
+
+.tile__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: white;
+  font-weight: bold;
+  font-size: min(12vw, 6vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
