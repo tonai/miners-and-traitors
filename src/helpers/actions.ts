@@ -203,7 +203,6 @@ export function selectHandTile(
 export function start(game: IGameState): void {
   game.round = 1;
   game.start = true;
-  game.actions = Object.fromEntries(game.allPlayerIds.map((id) => [id, []]));
   game.addons = [];
   newRound(game);
 }
@@ -223,6 +222,7 @@ export function newRound(game: IGameState): void {
   game.results = null;
   game.canPlay = true;
   game.votes = {};
+  game.actions = Object.fromEntries(game.allPlayerIds.map((id) => [id, []]));
 
   // board
   game.board = initBoard();

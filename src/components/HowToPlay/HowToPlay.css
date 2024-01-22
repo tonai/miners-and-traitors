@@ -59,7 +59,8 @@
 
 .htp__content {
   padding: min(5vw, 2.5vh);
-  line-height: 4vh;
+  line-height: min(8vw, 4vh);
+  font-size: min(5vw, 2.5vh);
 }
 
 .htp__title {
@@ -97,5 +98,5 @@
 }
 
 .htp__label {
-  margin-right: 10px;
+  flex: min(40vw, 20vh);
 }

@@ -1,7 +1,22 @@
 {
   "name": "miners-and-traitors",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
+  "description": "Miner and traitors Rune game",
+  "license": "MIT",
+  "homepage": "https://github.com/tonai/miners-and-traitors",
+  "bugs": {
+    "url": "https://github.com/tonai/miners-and-traitors/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tonai/miners-and-traitors.git"
+  },
+  "author": {
+    "name": "Tony Cabaye",
+    "email": "tonai59+github@gmail.com",
+    "url": "https://github.com/tonai"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite --host",
