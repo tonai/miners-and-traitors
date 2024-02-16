@@ -6,4 +6,4 @@ This game was made using [Rune](https://www.rune.ai/).
 
 It was developed During the [React Jam Winter 2013](https://reactjam.com/).
 
-You can play it [here](https://app.rune.ai/dev-0GkyTb1A).
+You can play it [here](https://app.rune.ai/dev-0GkyTb1A) or on the Rune app.
