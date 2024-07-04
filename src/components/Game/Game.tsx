@@ -1,4 +1,4 @@
-import { Players as PlayersType } from "rune-games-sdk";
+import { Players as PlayersType } from "dusk-games-sdk";
 import { IGameState } from "../../logic/logic";
 import Board from "../Board/Board";
 import Hand from "../Hand/Hand";
@@ -62,8 +62,8 @@ export default function Game(props: IGameProps) {
     if (!game.results) {
       const time = getRandomInt(1000, 2000);
       const interval = setInterval(() => {
-        Rune.actions.lockAi();
-        setTimeout(() => Rune.actions.processAi(), 200);
+        Dusk.actions.lockAi();
+        setTimeout(() => Dusk.actions.processAi(), 200);
       }, time);
       return () => clearInterval(interval);
     }

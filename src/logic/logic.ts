@@ -1,4 +1,4 @@
-import type { RuneClient } from "rune-games-sdk/multiplayer";
+import type { DuskClient } from "dusk-games-sdk";
 import { isAi } from "../helpers/utils";
 import { IActions, IBoard, IPlayers, ISelectedTile, ISolutions, ITileKey } from "../types/game";
 import {
@@ -50,10 +50,10 @@ export type IGameActions = {
 };
 
 declare global {
-  const Rune: RuneClient<IGameState, IGameActions>;
+  const Dusk: DuskClient<IGameState, IGameActions>;
 }
 
-Rune.initLogic({
+Dusk.initLogic({
   minPlayers: 1,
   maxPlayers: 4,
   setup: (allPlayerIds): IGameState => {

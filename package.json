@@ -25,13 +25,13 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives",
     "preview": "vite preview",
     "prepublish": "npm run build",
-    "publish": "npx rune-games-cli@latest upload"
+    "publish": "npx dusk-cli@latest upload"
   },
   "dependencies": {
     "classnames": "^2.5.0",
+    "dusk-games-sdk": "^4.19.17",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rune-games-sdk": "^4.16.17"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
@@ -40,12 +40,12 @@
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
     "eslint": "7.22.0",
+    "eslint-plugin-dusk": "^1.0.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
-    "eslint-plugin-rune": "^0.2.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.2",
-    "vite-plugin-qrcode": "^0.2.2",
-    "vite-plugin-rune": "^0.2.0"
+    "vite-plugin-dusk": "^1.0.0",
+    "vite-plugin-qrcode": "^0.2.2"
   }
 }

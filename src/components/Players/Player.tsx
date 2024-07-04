@@ -1,4 +1,4 @@
-import { Players as PlayersType } from "rune-games-sdk";
+import { Players as PlayersType } from "dusk-games-sdk";
 import classNames from "classnames";
 import { IActions, IPlayer, ISelectedTile } from "../../types/game";
 import "./Players.css";
@@ -61,9 +61,9 @@ function Player(props: IPlayerProps) {
   function handleClick(key: string) {
     return () => {
       if (selectedTile?.tile && cards[selectedTile.tile].action) {
-        Rune.actions.addActionTile({ playerId: key });
+        Dusk.actions.addActionTile({ playerId: key });
       }
-      setTimeout(() => Rune.actions.drawAndPass(), 1000);
+      setTimeout(() => Dusk.actions.drawAndPass(), 1000);
     };
   }
 

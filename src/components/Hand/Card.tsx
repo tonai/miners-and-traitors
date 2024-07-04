@@ -43,8 +43,8 @@ export default function Card(props: ICardProps) {
     if (discard) {
       playSound("discard", volume);
       setTimeout(() => {
-        Rune.actions.discardHandTile?.(discard);
-        Rune.actions.drawAndPass();
+        Dusk.actions.discardHandTile?.(discard);
+        Dusk.actions.drawAndPass();
       }, 1000);
     }
   }, [discard]);
@@ -63,7 +63,7 @@ export default function Card(props: ICardProps) {
   function handlePointerDown(tile: ITileKey, index: number) {
     return (event: PointerEvent<HTMLButtonElement>) => {
       if (canPlay && playerId && playerId === currentPlayer) {
-        Rune.actions.selectHandTile?.({ index, tile });
+        Dusk.actions.selectHandTile?.({ index, tile });
         setDrag({
           index,
           tile,

@@ -1,4 +1,4 @@
-import { Players } from "rune-games-sdk";
+import { Players } from "dusk-games-sdk";
 import { IPlayer, IPlayers } from "../../types/game";
 import { isAi } from "../../helpers/utils";
 import { robot } from "../../constants/assets";
@@ -78,11 +78,11 @@ export function Results(props: IResultsProps) {
 
   function handleClick() {
     if (end) {
-      Rune.actions.restart();
+      Dusk.actions.restart();
     } else if (isAddonChosen) {
-      Rune.actions.nextRound();
+      Dusk.actions.nextRound();
     } else if (selectedAddon) {
-      Rune.actions.voteAddon({ addon: selectedAddon });
+      Dusk.actions.voteAddon({ addon: selectedAddon });
     }
   }
 

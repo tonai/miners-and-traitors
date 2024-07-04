@@ -48,11 +48,11 @@ export default function Tile(props: ITileKeyProps) {
 
   function handleClick() {
     if (selectedTile?.tile && !cards[selectedTile.tile].action) {
-      Rune.actions.addSelectedTile({ row, col });
+      Dusk.actions.addSelectedTile({ row, col });
     } else if (selectedTile?.tile && cards[selectedTile.tile].action) {
-      Rune.actions.addActionTile({ row, col });
+      Dusk.actions.addActionTile({ row, col });
     }
-    setTimeout(() => Rune.actions.drawAndPass(), 1000);
+    setTimeout(() => Dusk.actions.drawAndPass(), 1000);
   }
 
   useEffect(() => {

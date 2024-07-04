@@ -1,4 +1,4 @@
-import { Players } from "rune-games-sdk";
+import { Players } from "dusk-games-sdk";
 import { IGameState } from "../../logic/logic";
 import classNames from "classnames";
 import "./Menu.css";
@@ -15,7 +15,7 @@ export default function Menu(props: IMenuProps) {
   const { game, playerId, players } = props;
 
   function handleClick() {
-    Rune.actions.start();
+    Dusk.actions.start();
   }
 
   return (

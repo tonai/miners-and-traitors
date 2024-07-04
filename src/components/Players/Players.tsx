@@ -1,4 +1,4 @@
-import { Players as PlayersType } from "rune-games-sdk";
+import { Players as PlayersType } from "dusk-games-sdk";
 import { IActions, IPlayer, ISelectedTile } from "../../types/game";
 import { MAX_ROUND } from "../../constants/game";
 import Player from "./Player";

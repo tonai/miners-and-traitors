@@ -177,7 +177,7 @@ export function drawAndPass(game: IGameState): void {
 }
 
 export function endGame(game: IGameState) {
-  Rune.gameOver({
+  Dusk.gameOver({
     players: Object.fromEntries(
       Object.entries(game.players)
         .filter(([_, player]) => !player.ai)
@@ -210,7 +210,7 @@ export function start(game: IGameState): void {
 export function nextRound(game: IGameState): void {
   const isAddonChosen = game.addons.some(addon => game.resultsAddons.includes(addon));
   if (!isAddonChosen) {
-    throw Rune.invalidAction();
+    throw Dusk.invalidAction();
   } else {
     game.round++;
     newRound(game);

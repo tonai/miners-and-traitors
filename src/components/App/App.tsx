@@ -3,7 +3,7 @@ import { IGameState } from "../../logic/logic.ts";
 import HowToPlay from "../HowToPlay/HowToPlay.tsx";
 import Menu from "../Menu/Menu.tsx";
 import Game from "../Game/Game.tsx";
-import { Players } from "rune-games-sdk";
+import { Players } from "dusk-games-sdk";
 import "./App.css";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const [volume, setVolume] = useState(50);
 
   useEffect(() => {
-    Rune.initClient({
+    Dusk.initClient({
       onChange: ({ game, players, yourPlayerId }) => {
         setGame(game);
         setPlayers(players);
