@@ -1,21 +1,21 @@
-import { Players } from "dusk-games-sdk";
-import { IGameState } from "../../logic/logic";
-import classNames from "classnames";
-import "./Menu.css";
-import { robot } from "../../constants/assets";
-import { isAi } from "../../helpers/utils";
+import { Players } from "rune-sdk"
+import { IGameState } from "../../logic/logic"
+import classNames from "classnames"
+import "./Menu.css"
+import { robot } from "../../constants/assets"
+import { isAi } from "../../helpers/utils"
 
 export interface IMenuProps {
-  game: IGameState;
-  players?: Players;
-  playerId?: string;
+  game: IGameState
+  players?: Players
+  playerId?: string
 }
 
 export default function Menu(props: IMenuProps) {
-  const { game, playerId, players } = props;
+  const { game, playerId, players } = props
 
   function handleClick() {
-    Dusk.actions.start();
+    Rune.actions.start()
   }
 
   return (
@@ -25,21 +25,16 @@ export default function Menu(props: IMenuProps) {
       <ul className="menu__players">
         {game.allPlayerIds.map((key) => (
           <li
-          key={key}
-          className={classNames("menu__player", {
-            you: playerId === key,
-          })}
-        >
+            key={key}
+            className={classNames("menu__player", {
+              you: playerId === key,
+            })}
+          >
             {isAi(key) && (
               <>
-                <img
-                  className="menu__img"
-                  src={robot}
-                  width={42}
-                  height={42}
-                />
+                <img className="menu__img" src={robot} width={42} height={42} />
                 {key}
-                </>
+              </>
             )}
             {!isAi(key) && (
               <>
@@ -50,14 +45,14 @@ export default function Menu(props: IMenuProps) {
                   height={42}
                 />
                 {players?.[key].displayName} ({players?.[key].playerId})
-                </>
+              </>
             )}
-            </li>
+          </li>
         ))}
       </ul>
       <button className="menu_play active" onClick={handleClick} type="button">
         Play
       </button>
     </div>
-  );
+  )
 }

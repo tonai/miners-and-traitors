@@ -1,25 +1,25 @@
-import classNames from "classnames";
-import { tiles } from "../../constants/assets";
-import { TILE_HEIGHT, TILE_WIDTH } from "../../constants/game";
-import { ISelectedTile, ITileKey } from "../../types/game";
-import { playSound } from "../../helpers/sound";
-import { PointerEvent, useEffect, useRef, useState } from "react";
+import classNames from "classnames"
+import { tiles } from "../../constants/assets"
+import { TILE_HEIGHT, TILE_WIDTH } from "../../constants/game"
+import { ISelectedTile, ITileKey } from "../../types/game"
+import { playSound } from "../../helpers/sound"
+import { PointerEvent, useEffect, useRef, useState } from "react"
 
 export interface ICardProps {
-  canPlay?: boolean;
-  currentPlayer?: string;
-  index: number;
-  playerId?: string;
-  selectedTile?: ISelectedTile;
+  canPlay?: boolean
+  currentPlayer?: string
+  index: number
+  playerId?: string
+  selectedTile?: ISelectedTile
   setDrag: (params: {
-    index: number;
-    tile: string;
-    tileRef: HTMLDivElement;
-    x: number;
-    y: number;
-  }) => void;
-  tile: string;
-  volume: number;
+    index: number
+    tile: string
+    tileRef: HTMLDivElement
+    x: number
+    y: number
+  }) => void
+  tile: string
+  volume: number
 }
 
 export default function Card(props: ICardProps) {
@@ -32,47 +32,47 @@ export default function Card(props: ICardProps) {
     setDrag,
     tile,
     volume,
-  } = props;
+  } = props
   const [discard, setDiscard] = useState<
     false | { index: number; tile: string }
-  >(false);
-  const tileRef = useRef<HTMLDivElement>(null);
-  const [isNew, setIsNew] = useState(true);
+  >(false)
+  const tileRef = useRef<HTMLDivElement>(null)
+  const [isNew, setIsNew] = useState(true)
 
   useEffect(() => {
     if (discard) {
-      playSound("discard", volume);
+      playSound("discard", volume)
       setTimeout(() => {
-        Dusk.actions.discardHandTile?.(discard);
-        Dusk.actions.drawAndPass();
-      }, 1000);
+        Rune.actions.discardHandTile?.(discard)
+        Rune.actions.drawAndPass()
+      }, 1000)
     }
-  }, [discard]);
+  }, [discard])
 
   useEffect(() => {
-    setTimeout(() => setIsNew(false), 1000);
-  }, []);
+    setTimeout(() => setIsNew(false), 1000)
+  }, [])
 
   function handleDiscard(tile: ITileKey, index: number) {
     return () => {
-      setDiscard({ index, tile });
-      setTimeout(() => setDiscard(false), 1200);
-    };
+      setDiscard({ index, tile })
+      setTimeout(() => setDiscard(false), 1200)
+    }
   }
 
   function handlePointerDown(tile: ITileKey, index: number) {
     return (event: PointerEvent<HTMLButtonElement>) => {
       if (canPlay && playerId && playerId === currentPlayer) {
-        Dusk.actions.selectHandTile?.({ index, tile });
+        Rune.actions.selectHandTile?.({ index, tile })
         setDrag({
           index,
           tile,
           tileRef: tileRef.current as HTMLDivElement,
           x: event.pageX,
           y: event.pageY,
-        });
+        })
       }
-    };
+    }
   }
 
   return (
@@ -114,5 +114,5 @@ export default function Card(props: ICardProps) {
         )}
       </div>
     </li>
-  );
+  )
 }

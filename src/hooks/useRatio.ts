@@ -1,8 +1,8 @@
-import { RefObject, useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react"
 
 export function useRatio<E extends HTMLElement>(): [RefObject<E>, number] {
-  const [ratio, setRatio] = useState(1);
-  const ref = useRef<E>(null);
+  const [ratio, setRatio] = useState(1)
+  const ref = useRef<E>(null)
 
   useEffect(() => {
     if (ref.current) {
@@ -12,9 +12,9 @@ export function useRatio<E extends HTMLElement>(): [RefObject<E>, number] {
           window.innerHeight / ref.current.scrollHeight,
           1
         )
-      );
+      )
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     function resize() {
@@ -25,12 +25,12 @@ export function useRatio<E extends HTMLElement>(): [RefObject<E>, number] {
             window.innerHeight / ref.current.scrollHeight,
             1
           )
-        );
+        )
       }
     }
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
-  }, []);
+    window.addEventListener("resize", resize)
+    return () => window.removeEventListener("resize", resize)
+  }, [])
 
-  return [ref, ratio];
+  return [ref, ratio]
 }

@@ -1,28 +1,35 @@
-import classNames from "classnames";
-import { addonsImage } from "../../constants/assets";
-import { useEffect } from "react";
-import { playSound } from "../../helpers/sound";
+import classNames from "classnames"
+import { addonsImage } from "../../constants/assets"
+import { useEffect } from "react"
+import { playSound } from "../../helpers/sound"
 
 export interface IAddonProps {
-  addon: string;
-  addons: string[];
-  isAddonChosen: boolean;
-  selectedAddon?: string;
+  addon: string
+  addons: string[]
+  isAddonChosen: boolean
+  selectedAddon?: string
   setSelectedAddon: (addon: string) => void
-  volume: number;
+  volume: number
 }
 
 export default function Addon(props: IAddonProps) {
-  const { addon, addons, isAddonChosen, selectedAddon, setSelectedAddon, volume } = props;
+  const {
+    addon,
+    addons,
+    isAddonChosen,
+    selectedAddon,
+    setSelectedAddon,
+    volume,
+  } = props
 
   useEffect(() => {
     if (addons.includes(addon)) {
-      playSound("addon", volume);
+      playSound("addon", volume)
     }
-  }, [addons, addon]);
+  }, [addons, addon])
 
   function handleAddon(addon: string) {
-    return () => setSelectedAddon(addon);
+    return () => setSelectedAddon(addon)
   }
 
   return (
@@ -39,5 +46,5 @@ export default function Addon(props: IAddonProps) {
         {addon === "x2" && <div className="results__addonText">x2</div>}
       </button>
     </li>
-  );
+  )
 }

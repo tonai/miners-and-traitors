@@ -1,24 +1,24 @@
-import { Players } from "dusk-games-sdk";
-import { IPlayer, IPlayers } from "../../types/game";
-import { isAi } from "../../helpers/utils";
-import { robot } from "../../constants/assets";
-import classNames from "classnames";
-import { MAX_ROUND } from "../../constants/game";
-import { useEffect, useState } from "react";
-import "./Results.css";
-import Addon from "./Addon";
+import { Players } from "rune-sdk"
+import { IPlayer, IPlayers } from "../../types/game"
+import { isAi } from "../../helpers/utils"
+import { robot } from "../../constants/assets"
+import classNames from "classnames"
+import { MAX_ROUND } from "../../constants/game"
+import { useEffect, useState } from "react"
+import "./Results.css"
+import Addon from "./Addon"
 
 export interface IResultsProps {
-  addons: string[];
-  canPlay: boolean;
-  playerId?: string;
-  players?: Players;
-  playersInfo: IPlayers;
-  results: string | null;
-  resultsAddons: string[];
-  round: number;
-  volume: number;
-  votes: Record<string, string>;
+  addons: string[]
+  canPlay: boolean
+  playerId?: string
+  players?: Players
+  playersInfo: IPlayers
+  results: string | null
+  resultsAddons: string[]
+  round: number
+  volume: number
+  votes: Record<string, string>
 }
 
 export function Results(props: IResultsProps) {
@@ -33,65 +33,65 @@ export function Results(props: IResultsProps) {
     round,
     volume,
     votes,
-  } = props;
-  const [hide, setHide] = useState(false);
-  const [selectedAddon, setSelectedAddon] = useState<string>();
-  const playersEntries = Object.entries(playersInfo);
-  const votesNumber = Object.values(votes).length;
+  } = props
+  const [hide, setHide] = useState(false)
+  const [selectedAddon, setSelectedAddon] = useState<string>()
+  const playersEntries = Object.entries(playersInfo)
+  const votesNumber = Object.values(votes).length
   const nonAiPlayersNumber = playersEntries.filter(
-    ([_, player]) => !player.ai
-  ).length;
-  const end = round === MAX_ROUND;
-  const isAddonChosen = addons.some(addon => resultsAddons.includes(addon));
+    ([, player]) => !player.ai
+  ).length
+  const end = round === MAX_ROUND
+  const isAddonChosen = addons.some((addon) => resultsAddons.includes(addon))
   const disabled =
     canPlay ||
     ((Boolean(playerId && votes[playerId]) || (!end && !selectedAddon)) &&
       !isAddonChosen &&
-      round !== MAX_ROUND);
+      round !== MAX_ROUND)
 
-  let winner: IPlayer | undefined;
-  let winners: [string, IPlayer][] | undefined;
+  let winner: IPlayer | undefined
+  let winners: [string, IPlayer][] | undefined
   if (end) {
     const winnerInfo = playersEntries.reduce<[string, IPlayer] | undefined>(
       (acc, [key, player]) => {
         if (!acc || player.score > acc[1].score) {
-          acc = [key, player];
+          acc = [key, player]
         }
-        return acc;
+        return acc
       },
       undefined
-    ) as [string, IPlayer];
-    winner = winnerInfo[1];
-    winners = playersEntries.sort(([_1, a], [_2, b]) => b.score - a.score);
+    ) as [string, IPlayer]
+    winner = winnerInfo[1]
+    winners = playersEntries.sort(([, a], [, b]) => b.score - a.score)
   } else if (results === "miners") {
-    winners = playersEntries.filter(([_, player]) => !player.traitor);
+    winners = playersEntries.filter(([, player]) => !player.traitor)
   } else {
-    winner = results ? playersInfo[results] : undefined;
+    winner = results ? playersInfo[results] : undefined
     winners = playersEntries
-      .filter(([_, player]) => player.traitor === winner?.traitor)
-      .sort(([a], [b]) => (a === results ? -1 : b === results ? 1 : 0));
+      .filter(([, player]) => player.traitor === winner?.traitor)
+      .sort(([a], [b]) => (a === results ? -1 : b === results ? 1 : 0))
   }
 
   useEffect(() => {
-    setSelectedAddon(undefined);
-  }, [round]);
+    setSelectedAddon(undefined)
+  }, [round])
 
   function handleClick() {
     if (end) {
-      Dusk.actions.restart();
+      Rune.actions.restart()
     } else if (isAddonChosen) {
-      Dusk.actions.nextRound();
+      Rune.actions.nextRound()
     } else if (selectedAddon) {
-      Dusk.actions.voteAddon({ addon: selectedAddon });
+      Rune.actions.voteAddon({ addon: selectedAddon })
     }
   }
 
   function handleHide() {
-    setHide(true);
+    setHide(true)
   }
 
   function handleShow() {
-    setHide(false);
+    setHide(false)
   }
 
   return (
@@ -184,5 +184,5 @@ export function Results(props: IResultsProps) {
         )}
       </div>
     </>
-  );
+  )
 }

@@ -1,43 +1,51 @@
-import { TILE_HEIGHT, TILE_WIDTH } from "../../constants/game";
-import { IActions, IBoard, ISelectedTile } from "../../types/game";
-import Tile from "../Tile/Tile";
-import { useRatio } from "../../hooks/useRatio";
-import { CSSProperties, RefObject, useEffect, useMemo, useState } from "react";
-import "./Board.css";
-import classNames from "classnames";
+import { TILE_HEIGHT, TILE_WIDTH } from "../../constants/game"
+import { IActions, IBoard, ISelectedTile } from "../../types/game"
+import Tile from "../Tile/Tile"
+import { useRatio } from "../../hooks/useRatio"
+import { CSSProperties, RefObject, useEffect, useMemo, useState } from "react"
+import "./Board.css"
+import classNames from "classnames"
 
 export interface IBoardProps {
-  actions: IActions;
-  board: IBoard;
+  actions: IActions
+  board: IBoard
   boardRef: RefObject<HTMLDivElement>
-  currentPlayer?: string;
-  playerId?: string;
-  selectedTile?: ISelectedTile;
-  volume: number;
+  currentPlayer?: string
+  playerId?: string
+  selectedTile?: ISelectedTile
+  volume: number
 }
 
 export default function Board(props: IBoardProps) {
-  const { actions, board, boardRef, currentPlayer, playerId, selectedTile, volume } = props;
-  const [ref, ratio] = useRatio<HTMLTableElement>();
+  const {
+    actions,
+    board,
+    boardRef,
+    currentPlayer,
+    playerId,
+    selectedTile,
+    volume,
+  } = props
+  const [ref, ratio] = useRatio<HTMLTableElement>()
   const [init, setInit] = useState(false)
   const style = useMemo(() => {
-    const style: CSSProperties = { transform: `scale(${ratio})` };
+    const style: CSSProperties = { transform: `scale(${ratio})` }
     if (ref.current) {
-      style.width = ref.current.scrollWidth;
-      style.height = ref.current.scrollHeight;
+      style.width = ref.current.scrollWidth
+      style.height = ref.current.scrollHeight
     }
-    return style;
-  }, [ratio, ref]);
+    return style
+  }, [ratio, ref])
 
   useEffect(() => {
     if (boardRef.current && ratio !== 1) {
-      boardRef.current.scrollLeft = 50;
-      boardRef.current.scrollTop = 50;
+      boardRef.current.scrollLeft = 50
+      boardRef.current.scrollTop = 50
     }
-  }, [boardRef, ratio]);
+  }, [boardRef, ratio])
 
   useEffect(() => {
-    setInit(true);
+    setInit(true)
   }, [])
 
   return (
@@ -76,5 +84,5 @@ export default function Board(props: IBoardProps) {
         </table>
       </div>
     </div>
-  );
+  )
 }

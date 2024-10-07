@@ -1,24 +1,24 @@
-import { ChangeEvent, useState } from "react";
-import "./HowToPlay.css";
-import classNames from "classnames";
-import { gold, tileNSEW, tileStart } from "../../constants/assets";
-import { MAX_ROUND } from "../../constants/game";
+import { ChangeEvent, useState } from "react"
+import "./HowToPlay.css"
+import classNames from "classnames"
+import { gold, tileNSEW, tileStart } from "../../constants/assets"
+import { MAX_ROUND } from "../../constants/game"
 
 interface IHowToPlayProps {
-  setVolume: (volume: number) => void;
-  volume: number;
+  setVolume: (volume: number) => void
+  volume: number
 }
 
 export default function HowToPlay(props: IHowToPlayProps) {
-  const { setVolume, volume } = props;
-  const [open, setOpen] = useState(false);
+  const { setVolume, volume } = props
+  const [open, setOpen] = useState(false)
 
   function handleClick() {
-    setOpen(!open);
+    setOpen(!open)
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setVolume(Number(event.target.value));
+    setVolume(Number(event.target.value))
   }
 
   return (
@@ -33,7 +33,13 @@ export default function HowToPlay(props: IHowToPlayProps) {
           <h2 className="htp__title">Audio</h2>
           <label className="htp__form">
             <span className="htp__label">Volume:</span>{" "}
-            <input min={0} max={100} onChange={handleChange} type="range" value={volume} />
+            <input
+              min={0}
+              max={100}
+              onChange={handleChange}
+              type="range"
+              value={volume}
+            />
           </label>
           <h2 className="htp__title">How to play ?</h2>
           You are miners who dig the mountain to find gold.
@@ -89,5 +95,5 @@ export default function HowToPlay(props: IHowToPlayProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

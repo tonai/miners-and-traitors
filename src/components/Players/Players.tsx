@@ -1,21 +1,21 @@
-import { Players as PlayersType } from "dusk-games-sdk";
-import { IActions, IPlayer, ISelectedTile } from "../../types/game";
-import { MAX_ROUND } from "../../constants/game";
-import Player from "./Player";
-import "./Players.css";
-import { RefObject } from "react";
+import { Players as PlayersType } from "rune-sdk"
+import { IActions, IPlayer, ISelectedTile } from "../../types/game"
+import { MAX_ROUND } from "../../constants/game"
+import Player from "./Player"
+import "./Players.css"
+import { RefObject } from "react"
 
 export interface IPlayersProps {
-  actions: IActions;
-  allPlayerIds: string[];
-  currentPlayer?: string;
-  playerId?: string;
-  players?: PlayersType;
+  actions: IActions
+  allPlayerIds: string[]
+  currentPlayer?: string
+  playerId?: string
+  players?: PlayersType
   playersRef: RefObject<HTMLUListElement>
-  round: number;
-  selectedTile?: ISelectedTile;
-  volume: number;
-  you?: IPlayer;
+  round: number
+  selectedTile?: ISelectedTile
+  volume: number
+  you?: IPlayer
 }
 
 export default function Players(props: IPlayersProps) {
@@ -30,10 +30,10 @@ export default function Players(props: IPlayersProps) {
     selectedTile,
     volume,
     you,
-  } = props;
+  } = props
 
   if (!players) {
-    return null;
+    return null
   }
 
   return (
@@ -55,5 +55,5 @@ export default function Players(props: IPlayersProps) {
         {round}/{MAX_ROUND}
       </li>
     </ul>
-  );
+  )
 }

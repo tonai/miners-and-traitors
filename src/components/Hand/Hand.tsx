@@ -1,22 +1,22 @@
-import { ISelectedTile, ITileKey } from "../../types/game";
-import { useRatio } from "../../hooks/useRatio";
-import Card from "./Card";
-import "./Hand.css";
+import { ISelectedTile, ITileKey } from "../../types/game"
+import { useRatio } from "../../hooks/useRatio"
+import Card from "./Card"
+import "./Hand.css"
 
 export interface IHandProps {
-  canPlay?: boolean;
-  currentPlayer?: string;
-  hand?: ITileKey[];
-  playerId?: string;
-  selectedTile?: ISelectedTile;
+  canPlay?: boolean
+  currentPlayer?: string
+  hand?: ITileKey[]
+  playerId?: string
+  selectedTile?: ISelectedTile
   setDrag: (params: {
-    index: number;
-    tile: string;
-    tileRef: HTMLDivElement;
-    x: number;
-    y: number;
-  }) => void;
-  volume: number;
+    index: number
+    tile: string
+    tileRef: HTMLDivElement
+    x: number
+    y: number
+  }) => void
+  volume: number
 }
 
 export default function Hand(props: IHandProps) {
@@ -28,8 +28,8 @@ export default function Hand(props: IHandProps) {
     selectedTile,
     setDrag,
     volume,
-  } = props;
-  const [ref, ratio] = useRatio<HTMLDivElement>();
+  } = props
+  const [ref, ratio] = useRatio<HTMLDivElement>()
 
   return (
     <div className="hand" ref={ref} style={{ transform: `scale(${ratio})` }}>
@@ -49,5 +49,5 @@ export default function Hand(props: IHandProps) {
         ))}
       </ul>
     </div>
-  );
+  )
 }

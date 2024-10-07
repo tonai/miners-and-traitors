@@ -1,7 +1,13 @@
-import { ICard, ITileKey } from "../types/game";
+import { ICard, ITileKey } from "../types/game"
 
 export const cards: Record<string, ICard> = {
-  tileBlock: { north: false, south: false, est: false, west: false, closed: true },
+  tileBlock: {
+    north: false,
+    south: false,
+    est: false,
+    west: false,
+    closed: true,
+  },
   tileNSEW: { north: true, south: true, est: true, west: true },
   tileSEW: { north: false, south: true, est: true, west: true },
   tileNSW: { north: true, south: true, est: false, west: true },
@@ -34,38 +40,74 @@ export const cards: Record<string, ICard> = {
   tileESN: { north: true, south: true, est: true, west: false, closed: true },
   tileWSN: { north: true, south: true, est: false, west: true, closed: true },
   tileWES: { north: false, south: true, est: true, west: true, closed: true },
-};
+}
 
 export const tilesPile: ITileKey[] = [
-  'tileSEW', 'tileSEW', 'tileSEW',
-  'tileNSW', 'tileNSW', 'tileNSW',
-  'tileNSE', 'tileNSE', 'tileNSE',
-  'tileNEW', 'tileNEW', 'tileNEW',
-  'tileNS', 'tileNS', 'tileNS',
-  'tileEW', 'tileEW', 'tileEW',
-  'tileNSEW', 'tileNSEW', 'tileNSEW',
-  'tileSE', 'tileSE', 'tileSE',
-  'tileSW', 'tileSW', 'tileSW',
-  'tileNE', 'tileNE', 'tileNE',
-  'tileNW', 'tileNW', 'tileNW',
-  'tileW',
-  'tileN',
-  'tileE',
-  'tileS',
-  'tileWN',
-  'tileWE',
-  'tileWS',
-  'tileEN',
-  'tileSN',
-  'tileES',
-  'tileWEN',
-  'tileESN',
-  'tileWSN',
-  'tileWES',
-];
+  "tileSEW",
+  "tileSEW",
+  "tileSEW",
+  "tileNSW",
+  "tileNSW",
+  "tileNSW",
+  "tileNSE",
+  "tileNSE",
+  "tileNSE",
+  "tileNEW",
+  "tileNEW",
+  "tileNEW",
+  "tileNS",
+  "tileNS",
+  "tileNS",
+  "tileEW",
+  "tileEW",
+  "tileEW",
+  "tileNSEW",
+  "tileNSEW",
+  "tileNSEW",
+  "tileSE",
+  "tileSE",
+  "tileSE",
+  "tileSW",
+  "tileSW",
+  "tileSW",
+  "tileNE",
+  "tileNE",
+  "tileNE",
+  "tileNW",
+  "tileNW",
+  "tileNW",
+  "tileW",
+  "tileN",
+  "tileE",
+  "tileS",
+  "tileWN",
+  "tileWE",
+  "tileWS",
+  "tileEN",
+  "tileSN",
+  "tileES",
+  "tileWEN",
+  "tileESN",
+  "tileWSN",
+  "tileWES",
+]
 
-export const spyTiles: ITileKey[] = ['map', 'map', 'map', 'map', 'map', 'map'];
+export const spyTiles: ITileKey[] = ["map", "map", "map", "map", "map", "map"]
 
-export const wallTiles: ITileKey[] = ['blockBomb', 'blockBomb', 'tileBlock', 'tileBlock', 'tileBlock', 'tileBlock'];
+export const wallTiles: ITileKey[] = [
+  "blockBomb",
+  "blockBomb",
+  "tileBlock",
+  "tileBlock",
+  "tileBlock",
+  "tileBlock",
+]
 
-export const pickaxeTiles: ITileKey[] = ['pickaxe', 'pickaxe', 'pickaxe', 'brokenPickaxe', 'brokenPickaxe', 'brokenPickaxe'];
+export const pickaxeTiles: ITileKey[] = [
+  "pickaxe",
+  "pickaxe",
+  "pickaxe",
+  "brokenPickaxe",
+  "brokenPickaxe",
+  "brokenPickaxe",
+]

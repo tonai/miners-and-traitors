@@ -1,22 +1,22 @@
-import { Players as PlayersType } from "dusk-games-sdk";
-import classNames from "classnames";
-import { IActions, IPlayer, ISelectedTile } from "../../types/game";
-import "./Players.css";
-import { isAi } from "../../helpers/utils";
-import { brokenPickaxe, robot } from "../../constants/assets";
-import { cards } from "../../constants/cards";
-import { useEffect, useState } from "react";
-import { playSound } from "../../helpers/sound";
+import { Players as PlayersType } from "rune-sdk"
+import classNames from "classnames"
+import { IActions, IPlayer, ISelectedTile } from "../../types/game"
+import "./Players.css"
+import { isAi } from "../../helpers/utils"
+import { brokenPickaxe, robot } from "../../constants/assets"
+import { cards } from "../../constants/cards"
+import { useEffect, useState } from "react"
+import { playSound } from "../../helpers/sound"
 
 export interface IPlayerProps {
-  actions: IActions;
-  currentPlayer?: string;
-  playerId?: string;
+  actions: IActions
+  currentPlayer?: string
+  playerId?: string
   playerKey: string
-  players?: PlayersType;
-  selectedTile?: ISelectedTile;
-  you?: IPlayer;
-  volume: number;
+  players?: PlayersType
+  selectedTile?: ISelectedTile
+  you?: IPlayer
+  volume: number
 }
 
 function Player(props: IPlayerProps) {
@@ -29,45 +29,47 @@ function Player(props: IPlayerProps) {
     selectedTile,
     volume,
     you,
-  } = props;
-  const [init, setInit] = useState(false);
-  const isBroken = Boolean(actions[playerKey].find(({ action }) => action === "brokenPickaxe"));
+  } = props
+  const [init, setInit] = useState(false)
+  const isBroken = Boolean(
+    actions[playerKey].find(({ action }) => action === "brokenPickaxe")
+  )
 
   useEffect(() => {
     if (init) {
       if (isBroken) {
-        playSound('brokenPickaxe', volume)
+        playSound("brokenPickaxe", volume)
       } else {
-        playSound('pickaxe', volume)
+        playSound("pickaxe", volume)
       }
     }
-  }, [isBroken]);
+  }, [isBroken])
 
   useEffect(() => {
-    setInit(true);
+    setInit(true)
   }, [])
 
   function isActive(key: string): boolean {
     return Boolean(
       currentPlayer === playerId &&
-      actions[key] &&
-      ((selectedTile?.tile === "brokenPickaxe" &&
-        !actions[key].find(({ action }) => action === "brokenPickaxe")) ||
-        (selectedTile?.tile === "pickaxe" &&
-          actions[key].find(({ action }) => action === "brokenPickaxe")))
-    );
+        actions[key] &&
+        ((selectedTile?.tile === "brokenPickaxe" &&
+          !actions[key].find(({ action }) => action === "brokenPickaxe")) ||
+          (selectedTile?.tile === "pickaxe" &&
+            actions[key].find(({ action }) => action === "brokenPickaxe")))
+    )
   }
 
   function handleClick(key: string) {
     return () => {
       if (selectedTile?.tile && cards[selectedTile.tile].action) {
-        Dusk.actions.addActionTile({ playerId: key });
+        Rune.actions.addActionTile({ playerId: key })
       }
-      setTimeout(() => Dusk.actions.drawAndPass(), 1000);
-    };
+      setTimeout(() => Rune.actions.drawAndPass(), 1000)
+    }
   }
 
-  const active = isActive(playerKey);
+  const active = isActive(playerKey)
   return (
     <li
       key={playerKey}
@@ -114,7 +116,9 @@ function Player(props: IPlayerProps) {
           {you?.traitor ? "traitor" : "miner"}
         </div>
       )}
-      {playerId === playerKey && <div className="players__score">{you?.score}</div>}
+      {playerId === playerKey && (
+        <div className="players__score">{you?.score}</div>
+      )}
       {isBroken && (
         <img
           className="players__broken"
@@ -124,7 +128,7 @@ function Player(props: IPlayerProps) {
         />
       )}
     </li>
-  );
+  )
 }
 
-export default Player;
+export default Player

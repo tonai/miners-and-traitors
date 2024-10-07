@@ -1,22 +1,22 @@
-import { Players as PlayersType } from "dusk-games-sdk";
-import { IGameState } from "../../logic/logic";
-import Board from "../Board/Board";
-import Hand from "../Hand/Hand";
-import Players from "../Players/Players";
-import { Results } from "../Results/Results";
-import { useEffect, useRef, useState } from "react";
-import { getRandomInt } from "../../helpers/utils";
-import "./Game.css";
+import { Players as PlayersType } from "rune-sdk"
+import { IGameState } from "../../logic/logic"
+import Board from "../Board/Board"
+import Hand from "../Hand/Hand"
+import Players from "../Players/Players"
+import { Results } from "../Results/Results"
+import { useEffect, useRef, useState } from "react"
+import { getRandomInt } from "../../helpers/utils"
+import "./Game.css"
 
 export interface IGameProps {
-  game: IGameState;
-  players?: PlayersType;
-  playerId?: string;
-  volume: number;
+  game: IGameState
+  players?: PlayersType
+  playerId?: string
+  volume: number
 }
 
 function isInside(el: HTMLElement, event: TouchEvent | MouseEvent): boolean {
-  const { height, left, top, width } = el.getBoundingClientRect();
+  const { height, left, top, width } = el.getBoundingClientRect()
   if (event instanceof MouseEvent) {
     if (
       event.pageX >= left &&
@@ -24,10 +24,8 @@ function isInside(el: HTMLElement, event: TouchEvent | MouseEvent): boolean {
       event.pageY >= top &&
       event.pageY <= top + height
     ) {
-      el.dispatchEvent(
-        new CustomEvent("click", { bubbles: true })
-      );
-      return true;
+      el.dispatchEvent(new CustomEvent("click", { bubbles: true }))
+      return true
     }
   } else if (event instanceof TouchEvent) {
     if (
@@ -36,94 +34,90 @@ function isInside(el: HTMLElement, event: TouchEvent | MouseEvent): boolean {
       event.changedTouches[0].pageY >= top &&
       event.changedTouches[0].pageY <= top + height
     ) {
-      el.dispatchEvent(
-        new CustomEvent("click", { bubbles: true })
-      );
-      return true;
+      el.dispatchEvent(new CustomEvent("click", { bubbles: true }))
+      return true
     }
   }
-  return false;
+  return false
 }
 
 export default function Game(props: IGameProps) {
-  const { game, players, playerId, volume } = props;
+  const { game, players, playerId, volume } = props
   const [drag, setDrag] = useState<{
-    index: number;
-    tile: string;
-    tileRef: HTMLDivElement;
-    x: number;
-    y: number;
-  }>();
-  const boardRef = useRef<HTMLDivElement>(null);
-  const playersRef = useRef<HTMLUListElement>(null);
-  const timeRef = useRef(0);
+    index: number
+    tile: string
+    tileRef: HTMLDivElement
+    x: number
+    y: number
+  }>()
+  const boardRef = useRef<HTMLDivElement>(null)
+  const playersRef = useRef<HTMLUListElement>(null)
+  const timeRef = useRef(0)
 
   useEffect(() => {
     if (!game.results) {
-      const time = getRandomInt(1000, 2000);
+      const time = getRandomInt(1000, 2000)
       const interval = setInterval(() => {
-        Dusk.actions.lockAi();
-        setTimeout(() => Dusk.actions.processAi(), 200);
-      }, time);
-      return () => clearInterval(interval);
+        Rune.actions.lockAi()
+        setTimeout(() => Rune.actions.processAi(), 200)
+      }, time)
+      return () => clearInterval(interval)
     }
-  }, [game.results]);
+  }, [game.results])
 
   useEffect(() => {
     if (drag) {
-      drag.tileRef.style.zIndex = "1";
+      drag.tileRef.style.zIndex = "1"
 
-      // eslint-disable-next-line no-inner-declarations
       function move(event: TouchEvent | MouseEvent) {
         if (drag) {
           if (event instanceof MouseEvent) {
             drag.tileRef.style.translate = `${event.pageX - drag.x}px ${
               event.pageY - drag.y
-            }px`;
+            }px`
           } else if (event instanceof TouchEvent) {
             drag.tileRef.style.translate = `${
               event.touches[0].pageX - drag.x
-            }px ${event.touches[0].pageY - drag.y}px`;
+            }px ${event.touches[0].pageY - drag.y}px`
           }
         }
       }
 
-      // eslint-disable-next-line no-inner-declarations
       function drop(event: TouchEvent | MouseEvent) {
         if (drag) {
-          drag.tileRef.style.translate = `0 0`;
-          drag.tileRef.style.zIndex = "";
+          drag.tileRef.style.translate = `0 0`
+          drag.tileRef.style.zIndex = ""
         }
         if (boardRef.current && Date.now() - timeRef.current > 200) {
-          (
+          ;(
             boardRef.current.querySelectorAll(
               ".tile__highlighted"
             ) as NodeListOf<HTMLButtonElement>
-          ).forEach((el) => isInside(el, event));
+          ).forEach((el) => isInside(el, event))
         }
         if (playersRef.current) {
-          (
+          ;(
             playersRef.current.querySelectorAll(
               ".players__btn"
             ) as NodeListOf<HTMLButtonElement>
-          ).forEach((el) => isInside(el, event));
+          ).forEach((el) => isInside(el, event))
         }
-        setDrag(undefined);
+        setDrag(undefined)
       }
 
-      timeRef.current = Date.now();
-      window.addEventListener("mousemove", move);
-      window.addEventListener("touchmove", move);
-      window.addEventListener("mouseup", drop);
-      window.addEventListener("touchend", drop);
+      timeRef.current = Date.now()
+      window.addEventListener("mousemove", move)
+      window.addEventListener("touchmove", move)
+      window.addEventListener("mouseup", drop)
+      window.addEventListener("touchend", drop)
       return () => {
-        window.removeEventListener("mousemove", move);
-        window.removeEventListener("touchmove", move);
-        window.removeEventListener("mouseup", drop);
-        window.removeEventListener("touchend", drop);
-      };
+        window.removeEventListener("mousemove", move)
+        window.removeEventListener("touchmove", move)
+        window.removeEventListener("mouseup", drop)
+        window.removeEventListener("touchend", drop)
+      }
     }
-  }, [drag]);
+  }, [drag])
 
   return (
     <div className="game">
@@ -172,5 +166,5 @@ export default function Game(props: IGameProps) {
         votes={game.votes}
       />
     </div>
-  );
+  )
 }
